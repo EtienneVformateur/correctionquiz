@@ -53,13 +53,17 @@ class _QuizAppState extends State<QuizApp> {
                     onPressed: () {
                       bool bonnereponse = reponses[questionNumber];
                       setState(() {
-                        if (bonnereponse == true) {
-                          suiviScore
-                              .add(Icon(Icons.check, color: Colors.green));
-                        } else {
-                          suiviScore.add(Icon(Icons.close, color: Colors.red));
-                        }
-                        questionNumber++; // questionNumber = questionNumber + 1 ;
+                        if (suiviScore.length != questions.length) {
+                          if (bonnereponse == true) {
+                            suiviScore
+                                .add(Icon(Icons.check, color: Colors.green));
+                          } else {
+                            suiviScore
+                                .add(Icon(Icons.close, color: Colors.red));
+                          }
+                          if (questionNumber < questions.length - 1)
+                            questionNumber++;
+                        } // questionNumber = questionNumber + 1 ;
                       });
                     },
                     child: Text(
