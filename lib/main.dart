@@ -20,7 +20,6 @@ class _QuizAppState extends State<QuizApp> {
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
                 flex: 5,
@@ -28,7 +27,8 @@ class _QuizAppState extends State<QuizApp> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Center(
                     child: Text(
-                      "Question super difficile !?",
+                      "Question super difficile Question super difficile Question super difficile Question super difficile!?",
+                      textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
                     ),
                   ),
@@ -64,6 +64,14 @@ class _QuizAppState extends State<QuizApp> {
                   ),
                 ),
               ),
+              Row(
+                children: [
+                  Icon(Icons.check, color: Colors.green),
+                  Icon(Icons.close, color: Colors.red),
+                  Icon(Icons.check, color: Colors.green),
+                  Icon(Icons.close, color: Colors.red),
+                ],
+              )
             ],
           ),
         ),
