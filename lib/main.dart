@@ -13,7 +13,12 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppState extends State<QuizApp> {
   List<Icon> suiviScore = [];
-  List<String> questions = ["Question 1 ?", "Question 2 ?", "Question 3?"];
+  List<String> questions = [
+    "Le piton des neiges est un volcan de la Réunion ?",
+    "Flutter permet de faire des applications web également ?",
+    "Php est le language utilisé par Flutter ?"
+  ];
+  List<bool> reponses = [true, true, false];
   int questionNumber = 0;
 
   @override
@@ -46,8 +51,14 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.green)),
                     onPressed: () {
+                      bool bonnereponse = reponses[questionNumber];
                       setState(() {
-                        suiviScore.add(Icon(Icons.check, color: Colors.green));
+                        if (bonnereponse == true) {
+                          suiviScore
+                              .add(Icon(Icons.check, color: Colors.green));
+                        } else {
+                          suiviScore.add(Icon(Icons.close, color: Colors.red));
+                        }
                         questionNumber++; // questionNumber = questionNumber + 1 ;
                       });
                     },
@@ -66,8 +77,14 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.red)),
                     onPressed: () {
+                      bool bonnereponse = reponses[questionNumber];
                       setState(() {
-                        suiviScore.add(Icon(Icons.close, color: Colors.red));
+                        if (bonnereponse == false) {
+                          suiviScore
+                              .add(Icon(Icons.check, color: Colors.green));
+                        } else {
+                          suiviScore.add(Icon(Icons.close, color: Colors.red));
+                        }
                         questionNumber++; // questionNumber = questionNumber + 1 ;
                       });
                     },
