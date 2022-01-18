@@ -13,6 +13,7 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppState extends State<QuizApp> {
   List<Icon> suiviScore = [];
+  List<String> questions = ["Question 1 ?", "Question 2 ?", "Question 3?"];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +29,7 @@ class _QuizAppState extends State<QuizApp> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Center(
                     child: Text(
-                      "Question super difficile Question super difficile Question super difficile Question super difficile!?",
+                      questions[1],
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
                     ),
