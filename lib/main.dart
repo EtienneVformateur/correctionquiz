@@ -12,11 +12,7 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  List<Icon> suiviScore = [
-    Icon(Icons.check, color: Colors.green),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.check, color: Colors.green),
-  ];
+  List<Icon> suiviScore = [];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,7 +42,11 @@ class _QuizAppState extends State<QuizApp> {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.green)),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        suiviScore.add(Icon(Icons.check, color: Colors.green));
+                      });
+                    },
                     child: Text(
                       "Vrai",
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
@@ -61,7 +61,11 @@ class _QuizAppState extends State<QuizApp> {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.red)),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        suiviScore.add(Icon(Icons.close, color: Colors.red));
+                      });
+                    },
                     child: Text(
                       "Faux",
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
