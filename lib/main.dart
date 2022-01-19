@@ -16,12 +16,18 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppState extends State<QuizApp> {
   List<Icon> suiviScore = [];
-  // List<String> qb.questions = [
-  //   "Le piton des neiges est un volcan de la Réunion ?",
-  //   "Flutter permet de faire des applications web également ?",
-  //   "Php est le language utilisé par Flutter ?"
-  // ];
-  // List<bool> reponses = [true, true, false];
+
+  checkAnswer(bool x) {
+    bool bonnereponse = qb.getQuestionReponse();
+    setState(() {
+      if (bonnereponse == x) {
+        suiviScore.add(Icon(Icons.check, color: Colors.green));
+      } else {
+        suiviScore.add(Icon(Icons.close, color: Colors.red));
+      }
+      qb.nextQuestion(); // questionNumber = questionNumber + 1 ;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,19 +59,7 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.green)),
                     onPressed: () {
-                      bool bonnereponse = qb.getQuestionReponse();
-                      setState(() {
-                        // if (suiviScore.length != qb.questions.length) {
-                        if (bonnereponse == true) {
-                          suiviScore
-                              .add(Icon(Icons.check, color: Colors.green));
-                        } else {
-                          suiviScore.add(Icon(Icons.close, color: Colors.red));
-                        }
-                        // if (questionNumber < qb.questions.length - 1)
-                        qb.nextQuestion();
-                        // } // questionNumber = questionNumber + 1 ;
-                      });
+                      checkAnswer(true);
                     },
                     child: Text(
                       "Vrai",
@@ -82,16 +76,7 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.red)),
                     onPressed: () {
-                      bool bonnereponse = qb.getQuestionReponse();
-                      setState(() {
-                        if (bonnereponse == false) {
-                          suiviScore
-                              .add(Icon(Icons.check, color: Colors.green));
-                        } else {
-                          suiviScore.add(Icon(Icons.close, color: Colors.red));
-                        }
-                        qb.nextQuestion(); // questionNumber = questionNumber + 1 ;
-                      });
+                      checkAnswer(false);
                     },
                     child: Text(
                       "Faux",
