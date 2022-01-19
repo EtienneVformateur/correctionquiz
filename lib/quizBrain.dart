@@ -35,4 +35,8 @@ class QuizBrain {
   int nbQuestion() {
     return _questions.length;
   }
+
+  void reset() {
+    _questionNumber = 0;
+  }
 }
