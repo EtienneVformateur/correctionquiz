@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'quizBrain.dart';
+
+QuizBrain qb = QuizBrain();
 
 void main() {
   runApp(const QuizApp());
@@ -13,12 +16,12 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppState extends State<QuizApp> {
   List<Icon> suiviScore = [];
-  List<String> questions = [
-    "Le piton des neiges est un volcan de la Réunion ?",
-    "Flutter permet de faire des applications web également ?",
-    "Php est le language utilisé par Flutter ?"
-  ];
-  List<bool> reponses = [true, true, false];
+  // List<String> qb.questions = [
+  //   "Le piton des neiges est un volcan de la Réunion ?",
+  //   "Flutter permet de faire des applications web également ?",
+  //   "Php est le language utilisé par Flutter ?"
+  // ];
+  // List<bool> reponses = [true, true, false];
   int questionNumber = 0;
 
   @override
@@ -36,7 +39,7 @@ class _QuizAppState extends State<QuizApp> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Center(
                     child: Text(
-                      questions[questionNumber],
+                      qb.questions[questionNumber].enonce,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
                     ),
@@ -51,9 +54,9 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.green)),
                     onPressed: () {
-                      bool bonnereponse = reponses[questionNumber];
+                      bool bonnereponse = qb.questions[questionNumber].reponse;
                       setState(() {
-                        if (suiviScore.length != questions.length) {
+                        if (suiviScore.length != qb.questions.length) {
                           if (bonnereponse == true) {
                             suiviScore
                                 .add(Icon(Icons.check, color: Colors.green));
@@ -61,7 +64,7 @@ class _QuizAppState extends State<QuizApp> {
                             suiviScore
                                 .add(Icon(Icons.close, color: Colors.red));
                           }
-                          if (questionNumber < questions.length - 1)
+                          if (questionNumber < qb.questions.length - 1)
                             questionNumber++;
                         } // questionNumber = questionNumber + 1 ;
                       });
@@ -81,7 +84,7 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.red)),
                     onPressed: () {
-                      bool bonnereponse = reponses[questionNumber];
+                      bool bonnereponse = qb.questions[questionNumber].reponse;
                       setState(() {
                         if (bonnereponse == false) {
                           suiviScore
