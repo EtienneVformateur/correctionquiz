@@ -22,7 +22,6 @@ class _QuizAppState extends State<QuizApp> {
   //   "Php est le language utilisé par Flutter ?"
   // ];
   // List<bool> reponses = [true, true, false];
-  int questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class _QuizAppState extends State<QuizApp> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Center(
                     child: Text(
-                      qb.getQuestionEnonce(questionNumber),
+                      qb.getQuestionEnonce(),
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
                     ),
@@ -54,7 +53,7 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.green)),
                     onPressed: () {
-                      bool bonnereponse = qb.getQuestionReponse(questionNumber);
+                      bool bonnereponse = qb.getQuestionReponse();
                       setState(() {
                         // if (suiviScore.length != qb.questions.length) {
                         if (bonnereponse == true) {
@@ -64,7 +63,7 @@ class _QuizAppState extends State<QuizApp> {
                           suiviScore.add(Icon(Icons.close, color: Colors.red));
                         }
                         // if (questionNumber < qb.questions.length - 1)
-                        questionNumber++;
+                        qb.nextQuestion();
                         // } // questionNumber = questionNumber + 1 ;
                       });
                     },
@@ -83,7 +82,7 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.red)),
                     onPressed: () {
-                      bool bonnereponse = qb.getQuestionReponse(questionNumber);
+                      bool bonnereponse = qb.getQuestionReponse();
                       setState(() {
                         if (bonnereponse == false) {
                           suiviScore
@@ -91,7 +90,7 @@ class _QuizAppState extends State<QuizApp> {
                         } else {
                           suiviScore.add(Icon(Icons.close, color: Colors.red));
                         }
-                        questionNumber++; // questionNumber = questionNumber + 1 ;
+                        qb.nextQuestion(); // questionNumber = questionNumber + 1 ;
                       });
                     },
                     child: Text(
