@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quizBrain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain qb = QuizBrain();
 
@@ -18,15 +19,20 @@ class _QuizAppState extends State<QuizApp> {
   List<Icon> suiviScore = [];
 
   checkAnswer(bool x) {
-    bool bonnereponse = qb.getQuestionReponse();
-    setState(() {
-      if (bonnereponse == x) {
-        suiviScore.add(Icon(Icons.check, color: Colors.green));
-      } else {
-        suiviScore.add(Icon(Icons.close, color: Colors.red));
-      }
-      qb.nextQuestion(); // questionNumber = questionNumber + 1 ;
-    });
+    if (suiviScore.length == qb.nbQuestion()) {
+      Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.")
+          .show();
+    } else {
+      bool bonnereponse = qb.getQuestionReponse();
+      setState(() {
+        if (bonnereponse == x) {
+          suiviScore.add(Icon(Icons.check, color: Colors.green));
+        } else {
+          suiviScore.add(Icon(Icons.close, color: Colors.red));
+        }
+        qb.nextQuestion(); // questionNumber = questionNumber + 1 ;
+      });
+    }
   }
 
   @override

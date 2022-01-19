@@ -22,4 +22,17 @@ class QuizBrain {
       _questionNumber++;
     }
   }
+
+  bool fini() {
+    if (_questionNumber >= _questions.length - 1) {
+      print("fini");
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  int nbQuestion() {
+    return _questions.length;
+  }
 }
