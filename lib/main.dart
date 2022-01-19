@@ -39,7 +39,7 @@ class _QuizAppState extends State<QuizApp> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Center(
                     child: Text(
-                      qb.questions[questionNumber].enonce,
+                      qb.getQuestionEnonce(questionNumber),
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
                     ),
@@ -54,19 +54,18 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.green)),
                     onPressed: () {
-                      bool bonnereponse = qb.questions[questionNumber].reponse;
+                      bool bonnereponse = qb.getQuestionReponse(questionNumber);
                       setState(() {
-                        if (suiviScore.length != qb.questions.length) {
-                          if (bonnereponse == true) {
-                            suiviScore
-                                .add(Icon(Icons.check, color: Colors.green));
-                          } else {
-                            suiviScore
-                                .add(Icon(Icons.close, color: Colors.red));
-                          }
-                          if (questionNumber < qb.questions.length - 1)
-                            questionNumber++;
-                        } // questionNumber = questionNumber + 1 ;
+                        // if (suiviScore.length != qb.questions.length) {
+                        if (bonnereponse == true) {
+                          suiviScore
+                              .add(Icon(Icons.check, color: Colors.green));
+                        } else {
+                          suiviScore.add(Icon(Icons.close, color: Colors.red));
+                        }
+                        // if (questionNumber < qb.questions.length - 1)
+                        questionNumber++;
+                        // } // questionNumber = questionNumber + 1 ;
                       });
                     },
                     child: Text(
@@ -84,7 +83,7 @@ class _QuizAppState extends State<QuizApp> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.red)),
                     onPressed: () {
-                      bool bonnereponse = qb.questions[questionNumber].reponse;
+                      bool bonnereponse = qb.getQuestionReponse(questionNumber);
                       setState(() {
                         if (bonnereponse == false) {
                           suiviScore
